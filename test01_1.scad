@@ -11,7 +11,20 @@ w_back = 60;
 h_back = 35;
 thickness_back = 1; 
 
-walls();
+//walls();
+
+//frame1();
+//rotate([90, 0, 0])
+//translate([0,0,3])
+//backlight();
+kit_frame();
+
+module kit_frame(){
+    bottom();
+    color("blue")
+    translate([0,0,h_wall/2+thickness_bottom/2]);
+    walls();
+}
 module walls() {
 difference(){
         cube([w_back+2*thickness_walls, h_back+2*thickness_walls,h_wall],center=true);
@@ -19,11 +32,6 @@ difference(){
         cube([w_back, h_back,h_wall+1],center=true);
     }
 }
-//frame1();
-//rotate([90, 0, 0])
-//translate([0,0,3])
-//backlight();
-//bottom();
 
 module bottom(){
     cube([w_back+2*thickness_walls, h_back+2*thickness_walls,thickness_bottom],center=true);
