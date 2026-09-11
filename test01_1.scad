@@ -1,3 +1,6 @@
+use <akkum18650.scad>
+
+
 echo("Работа Полина Максимова");
 w_Frame = 65;
 d_Frame = 5;
@@ -11,13 +14,15 @@ w_back = 60;
 h_back = 35;
 thickness_back = 1; 
 
-//walls();
+walls();
 
 //frame1();
 //rotate([90, 0, 0])
 //translate([0,0,3])
 //backlight();
+
 kit_frame();
+akkum18650();
 
 module kit_frame(){
     bottom();
