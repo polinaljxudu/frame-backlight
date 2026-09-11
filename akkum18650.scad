@@ -1,6 +1,6 @@
 echo("Работа Полина Максимова");
-d_akkum = 18;
-h_akkum = 65;
+//d_akkum = 18;
+//h_akkum = 65;
 akkum18650();
 
 module akkum18650(){
