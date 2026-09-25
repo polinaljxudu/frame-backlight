@@ -5,7 +5,7 @@ echo("Работа Полина Максимова");
 fitnes_Frame = 4;
 thickness_walls =2;
 thickness_bottom = 2;
-h_wall = 4;
+h_wall = 7;
 
 w_back = 70;
 h_back = 45;
@@ -14,6 +14,30 @@ gap_backlight = 1.5;
 
 d_akkum = 18;
 h_akkum = 65;
+d_wires = 1.2;
+
+kit_frame();
+
+module kit_frame(){
+    bottom();
+    color("blue") 
+    translate([0,0,h_wall/2+thickness_bottom/2]);
+    walls();
+    wires();
+}
+
+module wires() {
+    translate([w_back/2,-h_back/2+6,h_wall/2+0.5])
+    rotate([0,90,0])
+    color("red")
+    cylinder(d=d_wires, h=25, center=true, $fn=32);
+    
+    translate([w_back/2,-h_back/2+2,h_wall/2+0.5])
+    rotate([0,90,0])
+    color("red")
+    cylinder(d=d_wires, h=25, center=true, $fn=32);
+}
+
 //walls();
 
 //rotate([90, 0, 0])
@@ -32,12 +56,7 @@ h_akkum = 65;
 //        akkum18650();
 //    }
 
-module kit_frame(){
-    bottom();
-    color("blue") 
-    translate([0,0,h_wall/2+thickness_bottom/2]);
-    walls();
-}
+
 module walls() {
 difference(){
         cube([w_back+2*thickness_walls+gap_backlight, h_back+2*thickness_walls+gap_backlight,h_wall],center=true);
