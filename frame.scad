@@ -16,9 +16,15 @@ thickness_back = 1;
 h_wall = 4;
 gap_backlight = 1.5;
 
+frame_debug();
 
-kit_frame();
-
+module frame_debug() {
+    difference() {
+        kit_frame();
+        translate([w_back/2,0,h_wall-thickness_bottom])
+        cube([w_back,h_back+2*thickness_walls+2,h_wall*2], center=true);
+    }
+}
 module kit_frame(){
     bottom();
     color("blue");
