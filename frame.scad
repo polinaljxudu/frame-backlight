@@ -9,6 +9,8 @@ d_wires = 1.2;
 fitnes_Frame = 4;
 thickness_walls =2;
 thickness_bottom = 2;
+thickness_top = 2;
+width_frame_window = 3;
 
 w_back = 70;
 h_back = 45;
@@ -16,8 +18,19 @@ thickness_back = 1;
 h_wall = 4;
 gap_backlight = 1.5;
 
-frame_debug();
+kit_frame();
+//frame_debug();
+//translate([0, 0, thickness_bottom/2+thickness_top/2])
+//window_frame();
 
+module window_frame() {
+    difference() {
+        color("green")
+        cube([w_back, h_back, thickness_top], center=true);
+        color("red")
+        cube([w_back-2*width_frame_window, h_back-2*width_frame_window, thickness_top+1], center=true);
+    }
+}
 module frame_debug() {
     difference() {
         kit_frame();
@@ -31,6 +44,8 @@ module kit_frame(){
     translate([0,0,h_wall/2+thickness_bottom/2])
     walls();
     wires();
+    translate([0, 0, thickness_bottom/2+thickness_top/2])
+    window_frame();
 }
 
 module wires() {
