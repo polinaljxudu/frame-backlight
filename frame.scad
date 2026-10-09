@@ -1,5 +1,5 @@
 use <akkum18650.scad>
-
+use <controller.scad>
 
 echo("Работа Полина Максимова");
 d_akkum = 18;
@@ -18,7 +18,11 @@ thickness_back = 1;
 h_wall = 4;
 gap_backlight = 1.5;
 
+w_controller = 20;
+
 kit_frame();
+translate([w_back/2+w_controller/2+2*thickness_walls, 0, 0])
+kit_controller();
 //frame_debug();
 //translate([0, 0, thickness_bottom/2+thickness_top/2])
 //window_frame();
