@@ -6,9 +6,17 @@ thickness_bottom = 2;
 
 h_wall = 4;
 thickness_walls = 2;
+gap_backlight = 1.5;
 
-kit_controller();
+debug_controller();
 
+module debug_controller(){
+    difference(){
+        kit_controller();
+        translate([-w_controller/2, 0, h_wall/2])
+        cube([w_controller, h_back+2*thickness_walls+1+gap_backlight, 2*h_wall], center = true);
+    }
+}
 module kit_controller(){
     controller();
     translate([0, 0, h_wall/2])
@@ -16,11 +24,11 @@ module kit_controller(){
 }
 module walls(){
 difference() {
-    cube([w_controller + 2 * thickness_walls, h_back+2*thickness_walls, thickness_bottom+h_wall], center=true);
+    cube([w_controller + 2 * thickness_walls+gap_backlight, h_back+2*thickness_walls+gap_backlight, thickness_bottom+h_wall], center=true);
     color("red")
-    cube([w_controller, h_back, thickness_bottom+h_wall+1], center=true);
+    cube([w_controller+gap_backlight, h_back+gap_backlight, thickness_bottom+h_wall+1], center=true);
     }
 }
 module controller() {
-    cube([w_controller, h_back, thickness_bottom], center=true);
+    cube([w_controller+gap_backlight, h_back+gap_backlight, thickness_bottom], center=true);
 }
