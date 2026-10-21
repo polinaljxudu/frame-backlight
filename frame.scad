@@ -7,27 +7,51 @@ h_akkum = 65;
 d_wires = 1.2;
 
 fitnes_Frame = 4;
-thickness_walls =2;
+thickness_walls = 2;
 thickness_bottom = 2;
 thickness_top = 2;
 width_frame_window = 3;
 
 w_back = 70;
 h_back = 45;
+
 thickness_back = 1;
 h_wall = 4;
 gap_backlight = 1.5;
 
 w_controller = 20;
 
-//kit_frame();
-//translate([w_back/2+w_controller/2+2*thickness_walls, 0, 0])
-translate([1, 0, 0])
+kit_frame();
+translate([w_back/2+w_controller/2+2*thickness_walls-0.51, 0, 0])
 kit_controller();
-frame_debug();
-debug_controller();
-//translate([0, 0, thickness_bottom/2+thickness_top/2])
-//window_frame();
+
+module kit_controller(){
+    controller();
+    translate([0, 0, h_wall/2])
+    controller_walls();
+}
+
+module controller_walls() {
+difference() {
+    cube([w_controller + 2*thickness_walls+gap_backlight, h_back + 2*thickness_walls+gap_backlight, thickness_bottom + h_wall], center=true);
+    color("red")
+    cube([w_controller+gap_backlight, h_back+gap_backlight, thickness_bottom + h_wall + 1], center=true);
+    translate([-w_controller/2 - thickness_walls, 0, 0])
+    cube([w_controller, h_back+2*thickness_walls+gap_backlight+2, thickness_bottom+h_wall+2], center=true);
+ }
+}
+
+module controller() {
+    cube([w_controller+gap_backlight, h_back+gap_backlight, thickness_bottom], center=true);
+}
+
+module debug_controller(){
+    difference(){
+        kit_controller();
+        translate([-w_controller/2, 0, h_wall/2])
+        cube([w_controller, h_back+2*thickness_walls+1+gap_backlight, 2*h_wall], center = true);
+    }
+}
 
 module window_frame() {
     difference() {
@@ -37,6 +61,7 @@ module window_frame() {
         cube([w_back-2*width_frame_window, h_back-2*width_frame_window, thickness_top+1], center=true);
     }
 }
+
 module frame_debug() {
     difference() {
         kit_frame();
@@ -44,9 +69,9 @@ module frame_debug() {
         cube([w_back,h_back+2*thickness_walls+2,h_wall*2], center=true);
     }
 }
+
 module kit_frame(){
     bottom();
-    color("blue");
     translate([0,0,h_wall/2+thickness_bottom/2])
     walls();
     wires();
@@ -76,11 +101,9 @@ difference(){
 
 module bottom(){
     cube([w_back+2*thickness_walls+gap_backlight, h_back+2*thickness_walls+gap_backlight,thickness_bottom],center=true);
-    }
+}
 
 module backlight(){
     color("lightblue")
     cube([w_back, h_back, thickness_back], center=true);
 }
-
-
