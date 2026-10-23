@@ -22,16 +22,11 @@ gap_backlight = 1.5;
 w_controller = 20;
 
 kit_frame();
-//kit_controler();
-
+//kit_controller();
+//controller();
 //translate([w_back/2+w_controller/2+2*thickness_walls-0.51, 0, 0])
 //kit_controller();
 
-module kit_controller(){
-    controller();
-    translate([0, 0, h_wall/2])
-    controller_walls();
-}
 
 module controller_walls() {
 difference() {
