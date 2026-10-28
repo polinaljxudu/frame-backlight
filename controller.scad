@@ -11,9 +11,10 @@ gap_backlight = 1.5;
 
 
 
-kit_controller();
+//kit_controller();
 //walls();
 //debug_controller();
+frame_controller();
 
 
 
